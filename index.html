@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistro Elegante | Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f9f6f1;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&w=1000&q=80') center/cover no-repeat;
+            color: #fff;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .menu-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .menu-section {
+            flex: 1;
+            min-width: 300px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d4af37;
+            color: #222;
+            letter-spacing: 1px;
+        }
+
+        .menu-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .item-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: #d4af37;
+            font-size: 1.2rem;
+        }
+
+        .item-desc {
+            color: #666;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        .menu-highlight {
+            border: 2px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-highlight::after {
+            content: "Chef's Choice";
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: #d4af37;
+            color: #fff;
+            padding: 5px 30px;
+            font-size: 0.8rem;
+            transform: rotate(45deg);
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #ddd;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .menu-section {
+                padding: 15px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .item-name, .item-price {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* CSS Columns for menu items */
+        @media (min-width: 992px) {
+            .menu-items {
+                columns: 2;
+                column-gap: 25px;
+            }
+            
+            .menu-item {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BISTRO ELEGANTE</h1>
+            <p class="tagline">Fine Dining Experience</p>
+            <p>Since 1998</p>
+        </header>
+
+        <div class="menu-container">
+            <div class="menu-section">
+                <h2 class="section-title">Appetizers</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">Bruschetta Classica</span>
+                            <span class="item-price">$12</span>
+                        </div>
+                        <p class="item-desc">Toasted bread topped with fresh tomatoes, basil, and extra virgin olive oil</p>
+                    </div>
+                    
+                    <div class="menu-item menu-highlight">
+                        <div class="item-header">
+                            <span class="item-name">Truffle Arancini</span>
+                            <span class="item-price">$16</span>
+                        </div>
+                        <p class="item-desc">Crispy risotto balls infused with black truffle and mozzarella</p>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">Seafood Platter</span>
+                            <span class="item-price">$22</span>
+                        </div>
+                        <p class="item-desc">Selection of fresh oysters, shrimp cocktail, and grilled calamari</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <h2 class="section-title">Main Courses</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">Filet Mignon</span>
+                            <span class="item-price">$36</span>
+                        </div>
+                        <p class="item-desc">8oz premium beef tenderloin with red wine reduction and roasted vegetables</p>
+                    </div>
+                    
+                    <div class="menu-item menu-highlight">
+                        <div class="item-header">
+                            <span class="item-name">Lobster Thermidor</span>
+                            <span class="item-price">$42</span>
+                        </div>
+                        <p class="item-desc">Whole lobster baked with creamy mushroom sauce and gruyère cheese</p>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">Wild Mushroom Risotto</span>
+                            <span class="item-price">$24</span>
+                        </div>
+                        <p class="item-desc">Creamy Arborio rice with seasonal wild mushrooms and Parmesan</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <h2 class="section-title">Desserts</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">Tiramisu</span>
+                            <span class="item-price">$10</span>
+                        </div>
+                        <p class="item-desc">Classic Italian dessert with espresso-soaked ladyfingers and mascarpone</p>
+                    </div>
+                    
+                    <div class="menu-item menu-highlight">
+                        <div class="item-header">
+                            <span class="item-name">Chocolate Soufflé</span>
+                            <span class="item-price">$14</span>
+                        </div>
+                        <p class="item-desc">Warm chocolate soufflé with vanilla bean ice cream</p>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">Crème Brûlée</span>
+                            <span class="item-price">$12</span>
+                        </div>
+                        <p class="item-desc">Vanilla custard with caramelized sugar crust and fresh berries</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2023 Bistro Elegante | All Rights Reserved</p>
+            <p>123 Gourmet Avenue, Culinary District | Reservations: (555) 123-4567</p>
+        </div>
+    </div>
+</body>
+</html>
