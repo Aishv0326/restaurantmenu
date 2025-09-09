@@ -6,448 +6,293 @@ CHANGELOG (this edit)
 -->
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#d5bdaf" />
-    <title>Bistro Elegante — Menu</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-      :root{
-        /* Palette */
-        --isabelline:#edede9ff;
-        --timberwolf:#d6ccc2ff;
-        --linen:#f5ebe0ff;
-        --champagne-pink:#e3d5caff;
-        --pale-dogwood:#d5bdafff;
-        /* Ink */
-        --ink-900:#1f1f1f; --ink-700:#2f2f2f; --ink-500:#545454; --ink-300:#7a7a7a;
-        /* Type */
-        --font-display:"Playfair Display", serif;
-        --font-sans:"Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
-        --fs-xxs:0.8125rem; --fs-xs:0.875rem; --fs-sm:1rem; --fs-md:1.125rem; --fs-lg:1.5rem; --fs-xl:2.25rem; --lh:1.55;
-        /* Layout */
-        --wrap:1100px; --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-5:1.25rem; --space-6:1.5rem; --space-8:2rem; --space-10:2.5rem;
-        --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.08); --shadow-soft:0 4px 16px rgba(0,0,0,.06);
-        --col-gap:2rem; --nav-h:66px;
-      }
 
-      html{scroll-behavior:smooth;}
-      html,body{height:100%;}
-      body{margin:0;background:var(--isabelline);
-        color:var(--ink-900); font-family:var(--font-sans); line-height:var(--lh);
-        -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; letter-spacing:.005em;}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#d5bdaf" />
+  <title>Bistro Elegante — Menu</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <link href="site.css" rel="stylesheet">
+</head>
 
-      .wrap{max-width:var(--wrap);margin-inline:auto;padding:clamp(1rem, 2.5vw, 2rem);}  
+<body>
+  <div class="wrap">
+    <!-- HERO -->
+    <header class="hero" role="banner">
+      <h1 class="hero__title">BISTRO ELEGANTE</h1>
+      <p class="hero__tag">Fine Dining Experience</p>
+      <div class="hero__actions">
+        <a href="#appetizers-h" class="btn btn--ghost">View Menu</a>
+        <button class="btn btn--print" type="button" onclick="window.print()">Print Menu</button>
+      </div>
+    </header>
+    <div class="ornament" aria-hidden="true"><span class="ornament__mark">✦</span></div>
+  </div>
 
-      /* HERO — centered, with requested background */
-      header.hero{
-        border-radius:var(--radius); border:1px solid var(--timberwolf); box-shadow:var(--shadow);
-        margin-block:var(--space-8); overflow:hidden; color:white; text-align:center;
-        background:linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)),
-          url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&w=1000&q=80') center/cover no-repeat;
-        padding:clamp(2rem, 5vw, 4rem);
-      }
-      .hero__title{font-family:var(--font-display); font-size:clamp(2rem, 6vw, 3.25rem); letter-spacing:.12em; text-transform:uppercase; margin:0 0 .25rem;}
-      .hero__tag{font-size:clamp(1rem, 2.5vw, 1.25rem); font-style:italic; letter-spacing:.08em; opacity:.95;}
-      .hero__since{margin-top:.35rem; font-size:var(--fs-sm); letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.9);} 
-
-      /* STICKY NAV BAR (full width) */
-      .nav-bar{ position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(6px); -webkit-backdrop-filter:saturate(140%) blur(6px);
-        background:rgba(245,235,224,.86); border-bottom:1px solid var(--timberwolf); box-shadow:0 8px 20px rgba(0,0,0,.06);} 
-      .nav__inner{ max-width:var(--wrap); margin-inline:auto; height:var(--nav-h); display:flex; align-items:center; padding:0 var(--space-4); }
-      .nav__rail{ display:flex; gap:.5rem; flex-wrap:wrap; }
-      .nav__rail a{ display:inline-block; padding:.55rem .95rem; border-radius:999px; text-decoration:none; font-size:var(--fs-xs); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-700); border:1px solid transparent; }
-      .nav__rail a:hover{ background:color-mix(in srgb, var(--champagne-pink) 40%, transparent); }
-      .nav__rail a.is-active{ background:linear-gradient(180deg, var(--champagne-pink), var(--pale-dogwood)); color:#1f1f1f; border-color:color-mix(in srgb, var(--pale-dogwood) 60%, #000 0%); }
-
-      /* Pure-CSS active highlight using :has(:target) */
-      body:not(:has(:target)) .nav__rail a[href="#appetizers-h"],
-      body:has(#appetizers-h:target) .nav__rail a[href="#appetizers-h"],
-      body:has(#mains-h:target) .nav__rail a[href="#mains-h"],
-      body:has(#coffees-h:target) .nav__rail a[href="#coffees-h"],
-      body:has(#teas-h:target) .nav__rail a[href="#teas-h"],
-      body:has(#desserts-h:target) .nav__rail a[href="#desserts-h"],
-      body:has(#specials-h:target) .nav__rail a[href="#specials-h"]{ @supports(selector(:has(*))){ all:unset; } }
-      @supports(selector(:has(*))){
-        body:not(:has(:target)) .nav__rail a[href="#appetizers-h"],
-        body:has(#appetizers-h:target) .nav__rail a[href="#appetizers-h"],
-        body:has(#mains-h:target) .nav__rail a[href="#mains-h"],
-        body:has(#coffees-h:target) .nav__rail a[href="#coffees-h"],
-        body:has(#teas-h:target) .nav__rail a[href="#teas-h"],
-        body:has(#desserts-h:target) .nav__rail a[href="#desserts-h"],
-        body:has(#specials-h:target) .nav__rail a[href="#specials-h"]{ background:linear-gradient(180deg, var(--champagne-pink), var(--pale-dogwood)); color:#1f1f1f; border:1px solid color-mix(in srgb, var(--pale-dogwood) 60%, #000 0%); border-radius:999px; padding:.55rem .95rem; text-decoration:none; font-size:var(--fs-xs); letter-spacing:.12em; text-transform:uppercase; }
-      }
-
-      /* Mobile nav: vertical stacked on small screens */
-      @media (max-width: 700px){
-        :root{ --nav-h:auto; }
-        .nav__inner{ height:auto; padding:.35rem var(--space-4); overflow:visible; }
-        .nav__rail{ flex-direction:column; flex-wrap:nowrap; gap:.4rem; width:100%; }
-        .nav__rail a{ display:block; width:100%; text-align:center; white-space:normal; }
-        .nav-bar::before, .nav-bar::after{ display:none; }
-
-        /* Footer center only on mobile */
-        .footer-grid{ grid-template-columns:1fr; place-items:center; text-align:center; }
-        .contact{ justify-items:center; text-align:center; }
-        .qr{ justify-self:center; }
-      }
-
-      main.menu{background:var(--linen); border:1px solid var(--timberwolf); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(1rem, 2.5vw, 2rem);}  
-
-      /* Category cards */
-      .category{ padding:var(--space-6) var(--space-4); background:linear-gradient(180deg, white, color-mix(in srgb, var(--linen) 92%, white 8%)); border-radius:calc(var(--radius) - 8px); border:1px solid var(--timberwolf); margin-block:var(--space-6); position:relative; scroll-margin-top:calc(var(--nav-h) + 16px); }
-      .category::before{ content:""; position:absolute; inset:0 auto auto 0; height:6px; width:100%; background:linear-gradient(90deg, var(--pale-dogwood), var(--champagne-pink)); border-top-left-radius:inherit; border-top-right-radius:inherit; }
-      .category__title{ font-family:var(--font-display); font-size:var(--fs-lg); letter-spacing:.08em; text-transform:uppercase; margin:0 0 var(--space-4); color:var(--ink-700); }
-
-      /* Multi-column lists */
-      .menu-list{column-gap:var(--col-gap); padding-left:1.25rem; margin:0; list-style:disc;}
-      .menu-list{ column-count:1; }
-      @media (min-width: 640px){ .menu-list{ column-count:2; } }
-      @media (min-width: 1200px){ .menu-list{ column-count:3; } }
-
-      .menu-list li{ break-inside:avoid; padding-bottom:var(--space-4); margin-bottom:var(--space-4); border-bottom:1px dashed var(--timberwolf); transition:background-color .25s ease, transform .25s ease; }
-      .menu-list li::marker{ color:var(--pale-dogwood); font-size:.9em; }
-      .menu-list li:last-child{ border-bottom:none; }
-      @media (hover:hover){ .menu-list li:hover{ background:rgba(0,0,0,.025); } }
-
-      .item{ display:flex; flex-direction:column; gap:.25rem; }
-      .item__row{ display:grid; grid-template-columns:1fr max-content; align-items:baseline; column-gap:1rem; }
-      .item__name{ font-weight:600; font-size:var(--fs-md); letter-spacing:.01em; }
-      .item__price{ font-variant-numeric:tabular-nums; letter-spacing:.02em; font-weight:700; color:var(--ink-700); }
-      .item__desc{ margin:0; color:var(--ink-500); font-size:var(--fs-sm); }
-
-      .badge{ border:1px solid var(--timberwolf); border-radius:999px; padding:.1em .5em; font-size:.75em; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-700); background:color-mix(in srgb, var(--champagne-pink) 50%, white 50%); }
-
-      /* Footer with QR */
-      footer{ margin-top:var(--space-8); }
-      .footer-grid{ display:grid; grid-template-columns:1.6fr .4fr; gap:1.25rem; align-items:center; background:linear-gradient(180deg, white, color-mix(in srgb, var(--isabelline) 85%, white 15%)); border:1px solid var(--timberwolf); border-radius:calc(var(--radius) - 8px); box-shadow:var(--shadow-soft); padding:var(--space-6); }
-      .contact{ display:grid; gap:.6rem; justify-items:start; text-align:left; color:var(--ink-700); }
-      .contact__title{ font-family:var(--font-display); font-size:1.25rem; margin-bottom:.25rem; letter-spacing:.04em; }
-      .contact__row{ display:inline-flex; align-items:center; gap:.5rem; }
-      .icon{ width:18px; height:18px; color:var(--pale-dogwood); }
-      .qr{ justify-self:end; text-align:center; }
-      .qr picture{ display:inline-block; }
-      .qr__img{ display:block; width:140px; height:140px; border-radius:12px; background:white; border:1px solid var(--timberwolf); box-shadow:var(--shadow-soft); image-rendering:pixelated; }
-      .qr__label{ font-size:var(--fs-xxs); color:var(--ink-500); margin-top:.5rem; }
-      .qr__link{ display:inline-block; margin-top:.35rem; font-size:var(--fs-xxs); color:var(--ink-700); text-decoration:underline; }
-      .fineprint{ text-align:center; color:var(--ink-500); font-size:var(--fs-xxs); padding-block:var(--space-6); }
-
-      @media (max-width: 700px){
-        .footer-grid{ grid-template-columns:1fr; place-items:center; text-align:center; }
-        .contact{ justify-items:center; text-align:center; }
-        .qr{ justify-self:center; }
-      }
-
-      /* Ultra-small mobile polish */
-      @media (max-width: 380px){
-        :root{ --fs-sm:.95rem; --fs-md:1.05rem; --fs-lg:1.35rem; }
-        .wrap{ padding:1rem; }
-        header.hero{ padding:1.25rem; }
-        .nav__rail a{ padding:.45rem .7rem; font-size:calc(var(--fs-xxs) * .95); }
-        .category{ padding:var(--space-4) var(--space-3); }
-        .item__row{ column-gap:.5rem; }
-      }
-
-      /* Focus visibility */
-      :where(a, button):focus-visible{ outline:2px solid var(--pale-dogwood); outline-offset:2px; }
-
-      /* Reduced motion */
-      @media (prefers-reduced-motion: reduce){ .menu-list li{ transition:none; } }
-
-      /* Dark mode */
-      @media (prefers-color-scheme: dark){
-        :root{ --ink-900:#f4f4f4; --ink-700:#e8e8e8; --ink-500:#c7c7c7; }
-        body{ background:linear-gradient(180deg, #2a2726, #1f1e1d); }
-        header.hero{ border-color:#4a4542; }
-        .nav-bar{ background:rgba(42,39,38,.86); border-bottom-color:#4a4542; }
-        main.menu{ background:#2b2927; border-color:#4a4542; }
-        .category{ background:#292726; border-color:#3a3532; }
-        .menu-list li{ border-bottom-color:#3a3532; }
-        .footer-grid{ background:#2b2927; border-color:#3a3532; }
-      }
-
-      /* Print */
-      @media print{
-        @page{ size:auto; margin:12mm; }
-        html{ scroll-behavior:auto; }
-        body{ background:#fff !important; color:#000; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-        header.hero{ background:none !important; color:#000; border:none; padding:0 0 8pt 0; }
-        .hero__title{ letter-spacing:.08em; }
-        .hero__tag{ font-style:normal; }
-        .nav-bar{ display:none !important; }
-        .wrap{ max-width:7.5in; }
-        main.menu{ background:transparent; border:none; box-shadow:none; padding:0; }
-        .category{ border:none; padding:12pt 0; margin:0 0 8pt; page-break-inside:avoid; }
-        .category::before{ display:none; }
-        .category__title{ font-size:14pt; margin:0 0 6pt; }
-        .menu-list{ column-count:2; column-gap:16pt; padding-left:0; list-style:none; }
-        .menu-list li{ border:none; padding:6pt 0; margin:0; }
-        .item__row{ grid-template-columns:1fr max-content; }
-        .item__name{ font-weight:700; }
-        .item__price{ font-weight:700; }
-        .footer-grid{ background:transparent; border:none; box-shadow:none; }
-        .qr__img{ width:120px; height:120px; }
-      }
-      /* Buttons under hero */
-      .hero__actions{ margin-top:1rem; display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; animation:fadeIn .6s ease both; }
-      @keyframes fadeIn{ from{ opacity:0; transform:translateY(4px);} to{ opacity:1; transform:none;} }
-      .btn{ appearance:none; border-radius:999px; padding:.62rem 1rem; font:600 0.95rem var(--font-sans); letter-spacing:.04em; cursor:pointer; border:1px solid var(--timberwolf); background:linear-gradient(135deg, var(--champagne-pink), var(--pale-dogwood)); background-size:200% 200%; box-shadow:var(--shadow-soft); transition:transform .18s ease, box-shadow .18s ease, background-position .45s ease; }
-      .btn:hover{ background-position:100% 0; transform:translateY(-1px); }
-      .btn:active{ transform:translateY(0); }
-      .btn:focus-visible{ outline:2px solid var(--pale-dogwood); outline-offset:2px; }
-      .btn--ghost{ background:transparent; border-color:var(--pale-dogwood); }
-      .btn--ghost:hover{ background:color-mix(in srgb, var(--champagne-pink) 30%, transparent); }
-      .btn--print{ }
-      @media (prefers-color-scheme: dark){ .btn{ border-color:#4a4542; } }
-      @media (max-width:380px){ .btn{ padding:.55rem .85rem; font-size:.9rem; } }
-      @media (prefers-reduced-motion: reduce){ .hero__actions{ animation:none; } .btn{ transition:none; } }
-          /* Ornamental divider under hero */
-      .ornament{ display:flex; align-items:center; justify-content:center; gap:.75rem; margin: .9rem auto var(--space-6); max-width:900px; }
-      .ornament::before, .ornament::after{ content:""; flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--timberwolf)); }
-      .ornament__mark{ font-size:1rem; line-height:1; color:var(--pale-dogwood); letter-spacing:.25em; }
-      @media (prefers-color-scheme: dark){
-        .ornament::before, .ornament::after{ background:linear-gradient(90deg, transparent, #4a4542); }
-        .ornament__mark{ color:#8b7d74; }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <!-- HERO -->
-      <header class="hero" role="banner">
-        <h1 class="hero__title">BISTRO ELEGANTE</h1>
-        <p class="hero__tag">Fine Dining Experience</p>
-        <div class="hero__actions">
-          <a href="#appetizers-h" class="btn btn--ghost">View Menu</a>
-          <button class="btn btn--print" type="button" onclick="window.print()">Print Menu</button>
-        </div>
-      </header>
-        <div class="ornament" aria-hidden="true"><span class="ornament__mark">✦</span></div>
+  <!-- STICKY NAV BAR (full width) -->
+  <nav class="nav-bar" aria-label="Menu sections">
+    <div class="nav__inner">
+      <div class="nav__rail">
+        <a href="#appetizers-h">Appetizers</a>
+        <a href="#mains-h">Main Courses</a>
+        <a href="#coffees-h">Coffees</a>
+        <a href="#teas-h">Teas</a>
+        <a href="#desserts-h">Desserts</a>
+        <a href="#specials-h">Specials</a>
+      </div>
     </div>
+  </nav>
 
-    <!-- STICKY NAV BAR (full width) -->
-    <nav class="nav-bar" aria-label="Menu sections">
-      <div class="nav__inner">
-        <div class="nav__rail">
-          <a href="#appetizers-h">Appetizers</a>
-          <a href="#mains-h">Main Courses</a>
-          <a href="#coffees-h">Coffees</a>
-          <a href="#teas-h">Teas</a>
-          <a href="#desserts-h">Desserts</a>
-          <a href="#specials-h">Specials</a>
+  <div class="wrap">
+    <main class="menu" role="main">
+      <!-- APPETIZERS -->
+      <section class="category" aria-labelledby="appetizers-h">
+        <h2 id="appetizers-h" class="category__title">Appetizers</h2>
+        <ul class="menu-list">
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Bruschetta Classica</span><span
+                  class="item__price">$12</span></div>
+              <p class="item__desc">Toasted bread with tomatoes, basil, extra virgin olive oil.</p>
+            </div>
+          </li>
+          <li class="menu-highlight">
+            <div class="item">
+              <div class="item__row"><span class="item__name">Truffle Arancini</span><span
+                  class="item__price">$16</span></div>
+              <p class="item__desc">Crispy risotto balls infused with black truffle and mozzarella.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Seafood Platter</span><span class="item__price">$22</span>
+              </div>
+              <p class="item__desc">Fresh oysters, shrimp cocktail, grilled calamari.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- MAINS -->
+      <section class="category" aria-labelledby="mains-h">
+        <h2 id="mains-h" class="category__title">Main Courses</h2>
+        <ul class="menu-list">
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Filet Mignon</span><span class="item__price">$36</span>
+              </div>
+              <p class="item__desc">8oz tenderloin, red wine reduction, roasted vegetables.</p>
+            </div>
+          </li>
+          <li class="menu-highlight">
+            <div class="item">
+              <div class="item__row"><span class="item__name">Lobster Thermidor</span><span
+                  class="item__price">$42</span></div>
+              <p class="item__desc">Whole lobster baked with creamy mushroom sauce and gruyère.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Wild Mushroom Risotto</span><span
+                  class="item__price">$24</span></div>
+              <p class="item__desc">Creamy Arborio rice with seasonal wild mushrooms and Parmesan.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- COFFEES -->
+      <section class="category" aria-labelledby="coffees-h">
+        <h2 id="coffees-h" class="category__title">Coffees</h2>
+        <ul class="menu-list">
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Espresso</span><span class="item__price">$3.25</span>
+              </div>
+              <p class="item__desc">Rich single-origin shot. Ask for ristretto.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Americano</span><span class="item__price">$3.75</span>
+              </div>
+              <p class="item__desc">Espresso over hot water, smooth and balanced.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Cappuccino</span><span class="item__price">$4.50</span>
+              </div>
+              <p class="item__desc">Velvety foam, equal parts espresso, milk, foam.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Flat White</span><span class="item__price">$4.75</span>
+              </div>
+              <p class="item__desc">Silky microfoam, bold espresso flavor.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Latte</span><span class="item__price">$5.00</span></div>
+              <p class="item__desc">Creamy steamed milk. Flavors: vanilla, caramel, hazelnut (+$0.50).</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Mocha</span><span class="item__price">$5.25</span></div>
+              <p class="item__desc">Dark chocolate, whipped cream optional.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- TEAS -->
+      <section class="category" aria-labelledby="teas-h">
+        <h2 id="teas-h" class="category__title">Teas</h2>
+        <ul class="menu-list">
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">English Breakfast</span><span
+                  class="item__price">$3.25</span></div>
+              <p class="item__desc">Robust black tea, excellent with milk.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Earl Grey</span><span class="item__price">$3.50</span>
+              </div>
+              <p class="item__desc">Bergamot aroma, citrusy and floral notes.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Jasmine Green</span><span class="item__price">$3.75</span>
+              </div>
+              <p class="item__desc">Fragrant jasmine blossoms, gentle caffeine.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Peppermint (Herbal)</span><span
+                  class="item__price">$3.25</span></div>
+              <p class="item__desc">Naturally caffeine-free, soothing finish.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Chai Latte</span><span class="item__price">$4.75</span>
+              </div>
+              <p class="item__desc">Spiced black tea with steamed milk.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- DESSERTS -->
+      <section class="category" aria-labelledby="desserts-h">
+        <h2 id="desserts-h" class="category__title">Desserts</h2>
+        <ul class="menu-list">
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Tiramisu</span><span class="item__price">$10</span></div>
+              <p class="item__desc">Espresso-soaked ladyfingers with mascarpone cream.</p>
+            </div>
+          </li>
+          <li class="menu-highlight">
+            <div class="item">
+              <div class="item__row"><span class="item__name">Chocolate Soufflé</span><span
+                  class="item__price">$14</span></div>
+              <p class="item__desc">Warm chocolate soufflé with vanilla bean ice cream.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Crème Brûlée</span><span class="item__price">$12</span>
+              </div>
+              <p class="item__desc">Vanilla custard, caramelized sugar crust, fresh berries.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- SPECIALS -->
+      <section class="category" aria-labelledby="specials-h">
+        <h2 id="specials-h" class="category__title">Seasonal Specials</h2>
+        <ul class="menu-list">
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Maple Spice Latte</span><span
+                  class="item__price">$5.50</span></div>
+              <p class="item__desc">Real maple syrup, warm spices, oat milk on request.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Apple Crumble Bar</span><span
+                  class="item__price">$4.50</span></div>
+              <p class="item__desc">Buttery crumble, cinnamon apples, vanilla drizzle.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="item__row"><span class="item__name">Pumpkin Soup</span><span class="item__price">$6.95</span>
+              </div>
+              <p class="item__desc">Toasted pepitas, crème fraîche. <span class="badge">GF</span></p>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-grid" aria-labelledby="contact-h">
+        <div>
+          <h2 id="contact-h" class="contact__title">Visit • Reserve • Order</h2>
+          <div class="contact">
+            <div class="contact__row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg><span>123 Kennely Ave, Bistro</span></div>
+            <div class="contact__row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.89.3 1.76.57 2.6a2 2 0 0 1-.45 2L9 10a16 16 0 0 0 5 5l.68-1.12a2 2 0 0 1 2-.45c.84.27 1.71.45 2.6.57A2 2 0 0 1 22 16.92z" />
+              </svg><span>(519) 503-1111</span></div>
+            <div class="contact__row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16v16H4z" />
+                <path d="m22 6-10 7L2 6" />
+              </svg><span>bistro@bistro.cafe</span></div>
+            <div class="contact__row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 12h18" />
+                <path d="M12 3v18" />
+              </svg><span>Open Daily: 7:00–18:00</span></div>
+          </div>
+        </div>
+        <div class="qr">
+          <!-- Prefer local QR (relative path for GitHub Pages project sites). Fallback uses external API. -->
+          <picture>
+            <source srcset="assets/qr.png" type="image/png">
+            <img class="qr__img" alt="QR code to website" loading="lazy" decoding="async"
+              src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=10&data=https%3A%2F%2Faishv0326.github.io%2Frestaurantmenu%2F" />
+          </picture>
+          <div class="qr__label">Scan to open: aishv0326.github.io/restaurantmenu/</div>
+          <a class="qr__link" href="https://aishv0326.github.io/restaurantmenu/" target="_blank" rel="noopener">Open
+            link</a>
         </div>
       </div>
-    </nav>
+      <div class="fineprint">Prices include tax where applicable. Please inform us of any allergies.</div>
+    </footer>
+  </div>
+</body>
 
-    <div class="wrap">
-      <main class="menu" role="main">
-        <!-- APPETIZERS -->
-        <section class="category" aria-labelledby="appetizers-h">
-          <h2 id="appetizers-h" class="category__title">Appetizers</h2>
-          <ul class="menu-list">
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Bruschetta Classica</span><span class="item__price">$12</span></div>
-                <p class="item__desc">Toasted bread with tomatoes, basil, extra virgin olive oil.</p>
-              </div>
-            </li>
-            <li class="menu-highlight">
-              <div class="item">
-                <div class="item__row"><span class="item__name">Truffle Arancini</span><span class="item__price">$16</span></div>
-                <p class="item__desc">Crispy risotto balls infused with black truffle and mozzarella.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Seafood Platter</span><span class="item__price">$22</span></div>
-                <p class="item__desc">Fresh oysters, shrimp cocktail, grilled calamari.</p>
-              </div>
-            </li>
-          </ul>
-        </section>
-
-        <!-- MAINS -->
-        <section class="category" aria-labelledby="mains-h">
-          <h2 id="mains-h" class="category__title">Main Courses</h2>
-          <ul class="menu-list">
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Filet Mignon</span><span class="item__price">$36</span></div>
-                <p class="item__desc">8oz tenderloin, red wine reduction, roasted vegetables.</p>
-              </div>
-            </li>
-            <li class="menu-highlight">
-              <div class="item">
-                <div class="item__row"><span class="item__name">Lobster Thermidor</span><span class="item__price">$42</span></div>
-                <p class="item__desc">Whole lobster baked with creamy mushroom sauce and gruyère.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Wild Mushroom Risotto</span><span class="item__price">$24</span></div>
-                <p class="item__desc">Creamy Arborio rice with seasonal wild mushrooms and Parmesan.</p>
-              </div>
-            </li>
-          </ul>
-        </section>
-
-        <!-- COFFEES -->
-        <section class="category" aria-labelledby="coffees-h">
-          <h2 id="coffees-h" class="category__title">Coffees</h2>
-          <ul class="menu-list">
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Espresso</span><span class="item__price">$3.25</span></div>
-                <p class="item__desc">Rich single-origin shot. Ask for ristretto.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Americano</span><span class="item__price">$3.75</span></div>
-                <p class="item__desc">Espresso over hot water, smooth and balanced.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Cappuccino</span><span class="item__price">$4.50</span></div>
-                <p class="item__desc">Velvety foam, equal parts espresso, milk, foam.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Flat White</span><span class="item__price">$4.75</span></div>
-                <p class="item__desc">Silky microfoam, bold espresso flavor.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Latte</span><span class="item__price">$5.00</span></div>
-                <p class="item__desc">Creamy steamed milk. Flavors: vanilla, caramel, hazelnut (+$0.50).</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Mocha</span><span class="item__price">$5.25</span></div>
-                <p class="item__desc">Dark chocolate, whipped cream optional.</p>
-              </div>
-            </li>
-          </ul>
-        </section>
-
-        <!-- TEAS -->
-        <section class="category" aria-labelledby="teas-h">
-          <h2 id="teas-h" class="category__title">Teas</h2>
-          <ul class="menu-list">
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">English Breakfast</span><span class="item__price">$3.25</span></div>
-                <p class="item__desc">Robust black tea, excellent with milk.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Earl Grey</span><span class="item__price">$3.50</span></div>
-                <p class="item__desc">Bergamot aroma, citrusy and floral notes.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Jasmine Green</span><span class="item__price">$3.75</span></div>
-                <p class="item__desc">Fragrant jasmine blossoms, gentle caffeine.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Peppermint (Herbal)</span><span class="item__price">$3.25</span></div>
-                <p class="item__desc">Naturally caffeine-free, soothing finish.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Chai Latte</span><span class="item__price">$4.75</span></div>
-                <p class="item__desc">Spiced black tea with steamed milk.</p>
-              </div>
-            </li>
-          </ul>
-        </section>
-
-        <!-- DESSERTS -->
-        <section class="category" aria-labelledby="desserts-h">
-          <h2 id="desserts-h" class="category__title">Desserts</h2>
-          <ul class="menu-list">
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Tiramisu</span><span class="item__price">$10</span></div>
-                <p class="item__desc">Espresso-soaked ladyfingers with mascarpone cream.</p>
-              </div>
-            </li>
-            <li class="menu-highlight">
-              <div class="item">
-                <div class="item__row"><span class="item__name">Chocolate Soufflé</span><span class="item__price">$14</span></div>
-                <p class="item__desc">Warm chocolate soufflé with vanilla bean ice cream.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Crème Brûlée</span><span class="item__price">$12</span></div>
-                <p class="item__desc">Vanilla custard, caramelized sugar crust, fresh berries.</p>
-              </div>
-            </li>
-          </ul>
-        </section>
-
-        <!-- SPECIALS -->
-        <section class="category" aria-labelledby="specials-h">
-          <h2 id="specials-h" class="category__title">Seasonal Specials</h2>
-          <ul class="menu-list">
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Maple Spice Latte</span><span class="item__price">$5.50</span></div>
-                <p class="item__desc">Real maple syrup, warm spices, oat milk on request.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Apple Crumble Bar</span><span class="item__price">$4.50</span></div>
-                <p class="item__desc">Buttery crumble, cinnamon apples, vanilla drizzle.</p>
-              </div>
-            </li>
-            <li>
-              <div class="item">
-                <div class="item__row"><span class="item__name">Pumpkin Soup</span><span class="item__price">$6.95</span></div>
-                <p class="item__desc">Toasted pepitas, crème fraîche. <span class="badge">GF</span></p>
-              </div>
-            </li>
-          </ul>
-        </section>
-      </main>
-
-      <footer>
-        <div class="footer-grid" aria-labelledby="contact-h">
-          <div>
-            <h2 id="contact-h" class="contact__title">Visit • Reserve • Order</h2>
-            <div class="contact">
-              <div class="contact__row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>123 Timberwolf Ave, Isabelline</span></div>
-              <div class="contact__row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.89.3 1.76.57 2.6a2 2 0 0 1-.45 2L9 10a16 16 0 0 0 5 5l.68-1.12a2 2 0 0 1 2-.45c.84.27 1.71.45 2.6.57A2 2 0 0 1 22 16.92z"/></svg><span>(555) 123‑4567</span></div>
-              <div class="contact__row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg><span>hello@isabelline.cafe</span></div>
-              <div class="contact__row"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18"/><path d="M12 3v18"/></svg><span>Open Daily: 7:00–18:00</span></div>
-            </div>
-          </div>
-          <div class="qr">
-            <!-- Prefer local QR (relative path for GitHub Pages project sites). Fallback uses external API. -->
-            <picture>
-              <source srcset="assets/qr.png" type="image/png">
-              <img class="qr__img" alt="QR code to website" loading="lazy" decoding="async" src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=10&data=https%3A%2F%2Faishv0326.github.io%2Frestaurantmenu%2F" />
-            </picture>
-            <div class="qr__label">Scan to open: aishv0326.github.io/restaurantmenu/</div>
-            <a class="qr__link" href="https://aishv0326.github.io/restaurantmenu/" target="_blank" rel="noopener">Open link</a>
-          </div>
-        </div>
-        <div class="fineprint">Prices include tax where applicable. Please inform us of any allergies.</div>
-      </footer>
-    </div>
-  </body>
 </html>
